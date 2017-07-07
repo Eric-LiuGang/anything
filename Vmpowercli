@@ -1,0 +1,2 @@
+#get vcenter datastore and vitural machine
+Get-datastore | select name,freespacegb,capacitygb,@{N=”vm”;E={[string]::join(‘,’,(get-vm –datastore $_.name | select –expandproperty name))}} | export-csv D:\workspace\datastorelist.csv
