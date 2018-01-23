@@ -1,3 +1,0 @@
-Add-PSSnapin VMware.VimAutomation.Core
-Connect-VIServer -Server 192.168.24.70 -User administrator@vsphere.local -Password '@iVision#123'
-Get-VM | Where-Object {$_.PowerState -eq "PoweredOn"} | Select Name,@{N='TargetDS';E={'Backup volume'}},Host | ConvertTo-Csv -NoTypeInformation | Set-Content -Path C:\Backup\Test_vCenter_Backup_List.csv
