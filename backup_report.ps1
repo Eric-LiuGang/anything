@@ -1,10 +1,13 @@
-#Created by Dai
+#Created by Eric
 #This is the main script for test vCenter backup.
 
 Add-PSSnapin VMware.VimAutomation.Core
 
 #Connect to vCenter
-Connect-VIServer -Server 192.168.24.60 -User "administrator@vsphere.local" -Password "@iVision#123"
+$vcenter=''
+$user=''
+$password=''
+Connect-VIServer -Server $vcenter -User $user -Password $password
 
 #Import backup list
 $backuplist = Import-Csv "C:\Backup\Test_vCenter_Backup_List.csv"
@@ -100,13 +103,6 @@ $mail = New-Object System.Net.Mail.MailMessage
 $mail.From = "itsms@ivision-china.cn";
 
 #Set recipient address
-
-#--delete 20170605--#
-#$mail.To.Add("sheng-ting.dai@ivision-china.cn");
-#$mail.To.Add("its.sysmanager@ivision-china.cn");
-#--end--#
-
-#--create 20170605--#
 $mail.To.Add("monitor@ivision-china.cn");
 #--end--#
 
@@ -120,7 +116,10 @@ $mail.Body = (Get-Content $newlog | Out-String)
 $smtp = New-Object System.Net.Mail.SmtpClient("mail.ivision-china.cn");
 
 #Set credential
-$smtp.Credentials = New-Object System.Net.NetworkCredential("sheng-ting.dai@ivision-china.cn", "hajimetyan");
+$smtp_user=''
+$smtp_password=''
+
+$smtp.Credentials = New-Object System.Net.NetworkCredential($smtp_user, $smtp_password);
 
 #Send mail
 $smtp.Send($mail);
