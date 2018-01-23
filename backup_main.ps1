@@ -1,4 +1,4 @@
-#Created by Dai@20160509
+#Created by Eric
 #This is a wrapper script for test vCenter backup.
 
 #Set variables
